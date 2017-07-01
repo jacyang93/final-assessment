@@ -1,0 +1,13 @@
+<h1>Edit your profile</h1>
+
+
+<%= form_for @user do |f| %>
+
+  Name: <%= f.text_field :name %>
+  Email: <%= f.text_field :email %>
+  Password: <%= f.password_field :password %>
+  <%= f.submit "Update Info" %>
+
+<% end %>
+
+<%= link_to "delete", user_path(current_user), method: :delete %>

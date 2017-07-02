@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = current_user
+    @user = User.find(current_user.id)
     if @user.update(user_params)
       redirect_to @user, notice: "updated"
     else

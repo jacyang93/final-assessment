@@ -16,7 +16,7 @@
       <p><%= flash[:notice] %></p>
     </div>
     <% else %>
-      <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
+      <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %> | <%= link_to "Sign in with Facebook", "/auth/facebook" %>
     <% end %>
     <%= yield %>
   </body>

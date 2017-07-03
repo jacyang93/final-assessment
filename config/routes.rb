@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   root "users#new"
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   resources :users
+  resources :searches
 end

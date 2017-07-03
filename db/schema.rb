@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170702164424) do
+ActiveRecord::Schema.define(version: 20170703135738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,17 +25,34 @@ ActiveRecord::Schema.define(version: 20170702164424) do
     t.index ["user_id"], name: "index_authentications_on_user_id"
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "items", force: :cascade do |t|
     t.bigint "user_id"
     t.string "title"
     t.string "description"
-    t.string "category"
     t.string "condition"
     t.integer "price"
     t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["user_id"], name: "index_items_on_user_id"
+  end
+
+  create_table "searches", force: :cascade do |t|
+    t.string "keywords"
+    t.integer "category_id"
+    t.decimal "min_price"
+    t.decimal "max_price"
+    t.integer "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -47,5 +64,6 @@ ActiveRecord::Schema.define(version: 20170702164424) do
   end
 
   add_foreign_key "authentications", "users"
+  add_foreign_key "items", "categories"
   add_foreign_key "items", "users"
 end

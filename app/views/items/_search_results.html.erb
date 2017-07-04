@@ -1,0 +1,23 @@
+
+<% if items.present? %>
+<% items.each do |item| %>
+    <tr>
+      <td><%= item.title %></td>
+      <td><%= item.location %></td>
+      <td><%= item.price %></td>
+      <% if item.pictures? %>
+      <td><%= image_tag item.pictures.first.thumb %>
+        <% else %>
+        <td> no picture </td>
+        <% end %>
+        <td><%= link_to 'Show', item %></td>
+        <% if current_user.id == item.user.id %>
+
+      <td><%= link_to 'Edit', edit_item_path(item) %></td>
+      <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>
+  <% end %>
+  <% else %>
+  <p> no result found <p>
+<% end %>

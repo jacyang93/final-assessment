@@ -1,31 +1,34 @@
-<p id="notice"><%= notice %></p>
+
 </div>
 <h1>Item</h1>
 
-<p> <%= link_to "Advanced Search", new_search_path %>
-<table>
-  <thead>
-    <tr>
-      <th>title</th>
-      <th>location</th>
-      <th>Price</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<%= form_tag items_path, :method => 'get', remote: true do %>
+  <p>
+    <input type="text_field" placeholder="Search For Items Title" name="search">
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
 
-  <tbody>
-    <% @items.each do |item| %>
+
+<%= link_to "Advanced Search", new_search_path %>
+<div>
+  <table>
+    <thead>
       <tr>
-        <td><%= item.title %></td>
-        <td><%= item.location %></td>
-        <td><%= item.price %></td>
-        <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Edit', edit_item_path(item) %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>title</th>
+        <th>location</th>
+        <th>Price</th>
+        <th>Picture</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody id='all_items'>
+      <%= render partial: 'search_results', locals: {items: @items} %>
+    </tbody>
+  </table>
+
+</div>
 
 
 <br>

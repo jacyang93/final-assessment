@@ -1,3 +1,7 @@
 <h1> Search Results </h1>
-
+<% if @search.items.present? %>
+<h2> <%= @search.items.count %> results found <h2>
 <%= render @search.items %>
+<% else %>
+<p> no result found <p>
+  <% end %>

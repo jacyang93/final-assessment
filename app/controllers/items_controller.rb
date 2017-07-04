@@ -1,16 +1,28 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
+
   # GET /items
   # GET /items.json
+
+
   def index
-    @items = Item.all
+    if params[:search]
+      @items = Item.search(params[:search])
+    else
+      @items = Item.all
+    end
+
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   # GET /items/1
   # GET /items/1.json
   def show
-    @item = Item.all
+    @item = Item.find(params[:id])
   end
 
   # GET /items/new
@@ -61,6 +73,8 @@ class ItemsController < ApplicationController
     end
   end
 
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
@@ -69,6 +83,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:title, :description, :category, :condition, :price, :location, :user_id)
+      params.require(:item).permit(:title, :description, :category_id, :condition, :price, :location, :user_id,  {pictures: []})
     end
 end

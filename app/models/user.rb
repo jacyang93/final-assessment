@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :items, dependent: :destroy
   validates :name, presence: true
   validates :email, presence: true
+  validates :email, uniqueness: true
 
 
   def self.create_with_auth_and_hash(authentication, auth_hash)

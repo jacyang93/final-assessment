@@ -1,0 +1,27 @@
+<table>
+  <thead>
+    <tr>
+      <th>title</th>
+      <th>location</th>
+      <th>Price</th>
+      <th>Picture</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td><%= items.title %></td>
+        <td><%= items.location %></td>
+        <td><%= items.price %></td>
+        <% if items.pictures? %>
+        <td><%= image_tag items.pictures.first.thumb %>
+          <% else %>
+          <td> no picture </td>
+          <% end %>
+        <td><%= link_to 'Show', items %></td>
+        <td><%= link_to 'Edit', edit_item_path(items) %></td>
+        <td><%= link_to 'Destroy', items, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  </tbody>
+</table>

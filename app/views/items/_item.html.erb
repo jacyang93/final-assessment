@@ -1,3 +1,34 @@
 
 
-<%= item.description %>
+<table>
+  <thead>
+    <tr>
+      <th>title</th>
+      <th>description</th>
+      <th>location</th>
+      <th>Price</th>
+      <th>Picture</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td><%= item.title %></td>
+        <td><%= item.description %></td>
+        <td><%= item.location %></td>
+        <td><%= item.price %></td>
+        <% if item.pictures? %>
+        <td>
+          <%  item.pictures.each do |x| %>
+          <%= image_tag x.normal %>
+          <% end %>
+          <% else %>
+          <td> no picture </td>
+          <% end %>
+      </tr>
+  </tbody>
+</table>
+
+<h2>Seller Info</h2>
+<p>Email address: <%= item.user.email %><p>

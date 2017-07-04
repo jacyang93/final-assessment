@@ -21,9 +21,9 @@
     <%= f.text_field :description %>
   </div>
 
-  <div class="field">
-    <%= f.label :category %>
-    <%= f.text_field :category %>
+  <div class="filed">
+    <%= f.label :category_id %>
+    <%= f.collection_select :category_id, Category.order(:name), :id, :name, include_blank: true %>
   </div>
 
   <div class="field">
@@ -39,7 +39,10 @@
   <div class="field">
     <%= f.label :location %>
     <%= f.text_field :location %>
-  </div>  
+  </div>
+
+  <%= f.file_field :pictures, multiple: true %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
